@@ -1,0 +1,129 @@
+/*REGISTER, LOGIN, FORGOT, RESET CSS*/
+.index-box{
+  margin: 25px auto;
+  width: 100%;
+  max-width: 420px;
+  background-color: #fff;
+  padding: 5px;
+  border-radius: 3px;
+  -webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.33);
+  -moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.33);
+  box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.33);
+}
+
+.form-signin {
+  padding: 15px;
+  margin: auto;
+}
+
+.ib-header{
+  margin: 5px 5px 10px 5px;
+  padding-bottom:10px;
+  border-bottom: 1px solid #eee;
+  text-align:center;
+}
+
+.ib-header h1{
+  margin: 0 25px;
+  color: #029f5b;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.form-label-group {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.form-label-group > input,
+.form-label-group > label {
+  padding: 0.75rem 0.75rem;
+}
+
+.form-label-group > label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  margin-bottom: 0; /* Override default `<label>` margin */
+  line-height: 1.5;
+  color: #495057;
+  cursor: text; /* Match the input under the label */
+  border: 1px solid transparent;
+  border-radius: .25rem;
+  transition: all .1s ease-in-out;
+}
+
+.form-label-group input::-webkit-input-placeholder {
+  color: transparent;
+}
+
+.form-label-group input:-ms-input-placeholder {
+  color: transparent;
+}
+
+.form-label-group input::-ms-input-placeholder {
+  color: transparent;
+}
+
+.form-label-group input::-moz-placeholder {
+  color: transparent;
+}
+
+.form-label-group input::placeholder {
+  color: transparent;
+}
+
+.form-label-group input:not(:placeholder-shown) {
+  padding-top: 1.25rem;
+  padding-bottom: 0.25rem;
+}
+
+.form-label-group input:not(:placeholder-shown) ~ label {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  font-size: 12px;
+  color: #777;
+}
+
+.button button{
+  position: relative;
+  background-color: #4de67d;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border-radius: 10px;
+  box-shadow: 0 6px #1CB94E;
+  margin: 0 auto;
+  width:50%;
+}
+
+.button button:hover{
+  background-color: #4de67d;
+	box-shadow: 0 4px #1CB94E;
+	top: 2px;
+}
+
+.button button:active{
+  background-color: #4de67d;
+	box-shadow: 0 0 #1CB94E;
+	top: 6px;
+}
+
+#forgot-pw{
+  width:50%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  margin-top: 0;
+}
+
+.forgot-password{
+  text-decoration: underline;
+  color: #888;
+  font-size: 0.75rem;
+}

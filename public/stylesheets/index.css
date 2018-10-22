@@ -1,0 +1,259 @@
+html, body{
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    height: 100%;
+    background-color: rgba(203, 203, 210, 0.15);
+    position: relative;
+}
+
+/* Header */
+header{
+    background-color: #e6ffff;
+    padding: 10px;
+}
+
+/* Navbar */
+.navbar-brand {
+    padding: 0 5px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.navbar-brand img{
+    background-position: center;
+    width: 100px;
+    height: 40px;
+}
+
+.navbar-nav a:hover{
+    cursor: pointer;
+    color: gray;
+}
+
+/* Navbar Dropdown */
+.navbar-nav .dropdown-menu {
+    background-color: lightblue;
+}
+
+.navbar-nav .dropdown-menu .dropdown-item{
+    background-color: lightblue;
+}
+
+.navbar-nav .dropdown-menu .dropdown-item.active{
+    color: black;
+    font-weight: 700;
+}
+
+/* Main */
+main{
+    padding: 10px;
+    padding-bottom: 60px; /* Height of the footer */
+}
+
+/*Table*/
+.card {
+    border-radius: 4px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(63, 63, 68, 0.1);
+    background-color: #FFFFFF;
+    margin-bottom: 30px;
+}
+
+.card .content {
+    padding: 15px 15px 10px 15px;
+}
+
+.table > thead > tr > th,
+.table > tbody > tr > th,
+.table > thead > tr > td,
+.table > tbody > tr > td{
+    padding: 12px 8px;
+    vertical-align: middle;
+}
+
+.table > thead > tr > th {
+    border-bottom-width: 1px;
+    font-size: 15px;
+    text-transform: uppercase;
+    color: #9A9A9A;
+    font-weight: 400;
+    padding-bottom: 5px;
+}
+
+.table > tbody > tr {
+    position: relative;
+}
+
+.card .table tbody td:first-child,
+.card .table thead th:first-child {
+    padding-left: 15px;
+}
+
+.card .table tbody td:last-child,
+.card .table thead th:last-child {
+    padding-right: 15px;
+}
+
+/* Card in Ingot More Info */
+.row .card{
+    margin-bottom: 5px;
+}
+
+.row .card .card-body{
+    padding: 0;
+}
+
+.row .card .card-body .d-flex h5{
+    text-decoration: underline;
+}
+
+.row .card .card-body th{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.row .card .card-body td{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+/* Footer */
+footer {
+    position: fixed;
+    bottom: 0px;
+    color: black;
+    width: 100%;
+    height: 60px;
+    border-top: 1px solid #e7e7e7;
+    background-color: rgba(203, 203, 210, 0.15);
+    z-index: -1;
+    overflow: hidden;
+}
+
+footer .copyright {
+    color: #777777;
+    padding: 0px 15px;
+    margin: 10px 3px;
+    font-size: 14px;
+}
+
+/* VIEWS/WHEEL/INDEX.ejs  */
+.editWheelForm{
+    display: none;
+}
+
+.fa-info-circle:before{
+    color: #04a0b2;
+    cursor: pointer;
+}
+
+.popover {
+    max-width: 306.6px;
+    border-radius: 6px;
+    border: none;
+    box-shadow: 0 0 6px 1px #eee;
+}
+
+.popover-body {
+font-size: 15px;
+z-index: 2;
+line-height: 1.53;
+letter-spacing: 0.1px;
+}
+
+/* VIEWS/WHEEL/INGOTLISTS.ejs */
+.ingotHeader {
+	text-align: center;
+}
+.ingotHeader h1 {
+	font-size: 64px;
+	font-weight: 300;
+	color: #2c3e50;
+}
+.ingotHeader h1 span {
+	font-weight: 700;
+}
+.ingotHeader h2 {
+	color: #284664;
+	font-weight:300;
+}
+
+.blinking{
+    animation:blinkingText 0.8s infinite;
+}
+
+.done{
+    opacity: 0;
+}
+
+.completeWheel input[type=checkbox]{
+    transform: scale(1.5);
+}
+
+.completeWheel input[type=checkbox] + label {
+    color: #4e4747;
+    font-size: 20px;
+} 
+
+.completeWheel input[type=checkbox]:checked + label {
+    color: #f00;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.addIngots {
+	width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+}
+
+.addIngots #ingot {
+	width: 100%;
+	height: 60px;
+	background: none;
+	border: none;
+	border-bottom: 1px solid #34495e;
+	outline: none;
+	font: 300 28px 'Ubuntu', sans-serif;
+    padding: 20px;
+    margin: 10px;
+    color: #34495e;
+}
+
+.list {
+	width: 800px;
+    margin: 0 auto;
+    list-style-type: none;
+}
+
+.task {
+	width: 100%;
+	height: 40px;
+	line-height: 40px;
+	font-size: 20px;
+	color: #34495e;
+	transition: all .3s ease;
+}
+
+.task:hover {
+	background: rgba(0, 0, 0, .02);
+	cursor: pointer;
+}
+
+.listGroup {
+    display:flex;
+    margin-bottom: 20px;
+}
+
+.listGroup button{
+    transition: all 0.3s;
+    opacity: 0;
+}
+
+.listGroup:hover button{
+    opacity: 1;
+}
+
+@keyframes blinkingText{
+    0%{     color: #000;    }
+    50%{    color: red; }
+    100%{   color: #000;    }
+}

@@ -1,0 +1,37 @@
+<% include ../partials/header %>
+
+<body>
+    <a href="/wheels" class="btn btn-outline-primary btn-lg">Back</a>
+
+    <div class="ingotHeader">
+        <h1><span><%= data[0].serialNo %></span> - <span><%= data[0].batchNo %></span></h1>
+        <h2>Sila Tambah Ingot Bawah Wheel Ini</h2>
+        <div class="completeWheel <%=data[0].isCompleted === true ?'done' :'' %>">
+            <input type="checkbox" id="isCompleted">
+            <label for="isCompleted">Wheel Habis Pakai</label>
+        </div>
+        <h5 class="blinking">Sila tandakan box atas hanya jika wheel <strong>habis terpakai</strong></h5>
+    </div>
+    
+    <section class="addIngots">
+        <label class="sr-only" for="ingot">Ingot</label>
+        <input id="ingot" type="text" placeholder="Barcode Scan Ingot Here" autofocus>
+    </section>
+  
+    <ul class="list">
+        <% data[0].ingots.forEach(function(val){ %>
+            <div class="listGroup" id= <%= val._id %>>
+                <li class="task"> <%=val.order%> - <%=val.lot%></li>
+                <button type="submit" class="btn btn-danger btn-sm" >Delete</button>
+            </div>
+        <% }); %>
+    </ul>
+
+</body>
+
+<script src="/jQuery/jquery-3.3.1.min.js"></script>
+<script src="/bootstrap-4.1.3-dist/js/bootstrap.bundle.min.js"></script>
+
+<script src="/ajax/ingotLists.js"></script>
+
+</html>

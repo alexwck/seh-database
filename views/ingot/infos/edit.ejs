@@ -1,0 +1,41 @@
+<% include ../../partials/header %>
+
+    <h4>Edit Info for <%=ingot.order%>-<%=ingot.lot%></h4>
+
+    <form action="/ingots/<%=ingot._id%>/grinding/info/?_method=PUT" method="POST" autocomplete="off">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="date">Gr Date</label>
+                <input id="date" type="date" name="grDate" value="<%=moment(ingot.grinding.grDate, 'YYYY-MM-DD').format('YYYY-MM-DD')%>" class="form-control">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="machine">Machine</label>
+                <select id="machine" name="machine" class="custom-select form-control">
+                    <option value="<%=ingot.grinding.machine%>" selected><%=ingot.grinding.machine%></option>
+                    <option value="CM28">CM28</option>
+                    <option value="CM29">CM29</option>
+                    <option value="CM32">CM32</option>
+                    <option value="CM33">CM33</option>
+                    <option value="CM37">CM37</option>
+                    <option value="CM38">CM38</option>
+                    <option value="CM39">CM39</option>
+                    <option value="EM46">EM46</option>
+                    <option value="EM47">EM47</option>
+                    <option value="EM48">EM48</option>
+                    <option value="EM49">EM49</option>
+                    <option value="EM50">EM50</option>
+                    <option value="EM52">EM52</option>
+                    <option value="EM53">EM53</option>
+                    <option value="EM55">EM55</option>
+                </select>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+    <a href="/ingots/<%=ingot._id%>">Back</a>
+
+<% include ../../partials/footer %>

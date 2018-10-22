@@ -1,0 +1,43 @@
+<% include ../../partials/header %>
+
+    <h4>Edit Wheel for <%=ingot.order%>-<%=ingot.lot%></h4>
+
+    <form action="/ingots/<%=ingot._id%>/grinding/wheel/?_method=PUT" method="POST" autocomplete="off">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="groove">Groove</label>
+                <select id="groove" name="groove" class="custom-select form-control">
+                    <option value="<%=ingot.grinding.groove%>" selected><%=ingot.grinding.groove%></option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="whllife">Wheel Life</label>
+                <input id="whllife" type="text" class="form-control" name="whlLife" value="<%=ingot.grinding.whlLife%>">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="maker">Wheel Maker</label>
+                <select id="maker" name="maker" class="custom-select form-control">
+                    <option value="<%=ingot.grinding.maker%>" selected><%=ingot.grinding.maker%></option>
+                    <option value="Asahi">Asahi</option>
+                    <option value="KGW">KGW</option>
+                    <option value="Noritake">Noritake</option>
+                    <option value="Adamas">Adamas</option>
+                </select>
+            </div>
+             <div class="form-group col-md-6">
+                <label for="drawingNo">Drawing Number</label>
+                <input id="drawingNo" type="text" name="drawingNo" value="<%=ingot.grinding.drawingNo%>" class="form-control" required>
+            </div>
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+    <a href="/ingots/<%=ingot._id%>">Back</a>
+
+<% include ../../partials/footer %>

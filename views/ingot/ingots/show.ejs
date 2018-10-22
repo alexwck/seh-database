@@ -1,0 +1,149 @@
+<% include ../../partials/header %>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="d-flex">
+            <h4 class="flex-grow-1"><%=ingot.order%>-<%=ingot.lot%></h4>
+            <a href="/ingots" class="btn btn-link">Back</a>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="content table-responsive table-full-width">
+                    <table class="table table-borderless">
+                        <tbody>
+                            <tr>
+                                <th scope="col">Serial Number</th>
+                                <td>
+                                    <% if(wheel && wheel.length > 0){ %>
+                                        <%= wheel[0].serialNo %>
+                                    <% } %>
+                                </td>
+                                <th scope="col">Batch Number</th>
+                                <td>
+                                    <% if(wheel && wheel.length > 0){ %>
+                                        <%= wheel[0].batchNo %>
+                                    <% } %>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="col">Maker</th>
+                                <td><%= ingot.grinding.maker %></td>
+                                <th scope="col">Drawing Number</th>
+                                <td><%= ingot.grinding.drawingNo %></td>
+                            </tr>
+                            <tr>
+                                <th scope="col">Groove</th>
+                                <td><%= ingot.grinding.groove %></td>
+                                <th scope="col">Wheel Life</th>
+                                <td><%= ingot.grinding.whlLife %></td>
+                            </tr>
+                            <div class="d-flex">
+                                <h5 class="flex-grow-1 align-self-center mb-0">Wheel</h5>
+                                <% if(wheel && wheel.length === 0){ %>
+                                    <a href="/wheels/new/<%=ingot._id%>" class="btn btn-primary btn-sm">Add Wheel Serial No and Batch</a>
+                                <% } else{  %>
+                                    <% if(currentUser && currentUser.isAdmin){ %>
+                                        <form action="/ingots/<%=ingot._id%>?_method=DELETE" method="POST">
+                                            <button class="btn btn-danger btn-sm">Delete Serial No and Batch No</button>
+                                        </form>
+                                    <% } %>
+                                <% } %>
+                                <% if(currentUser && currentUser.isAdmin){ %>
+                                    <a href="/ingots/<%=ingot._id%>/grinding/wheel/edit" class="btn btn-warning btn-sm">Edit Wheel</a>
+                                <% } %>
+                            </div>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="content table-responsive table-full-width">
+                    <table class="table table-borderless">
+                        <tbody>
+                            <tr>
+                                <th scope="col">Grinding Date</th>
+                                <td>
+                                    <% if(ingot.grinding.grDate === 'Invalid date'){ %>
+                                        <%= %>
+                                    <% } else { %>
+                                        <%=moment(ingot.grinding.grDate, 'YYYY-MM-DD').format('DD MMM YYYY')%>
+                                    <% } %>
+                                </td>
+                                <th scope="col">Machine</th>
+                                <td><%= ingot.grinding.machine %></td>
+                            </tr>
+                            <tr>
+                                <th scope="col">Operator 1</th>
+                                <td><%= ingot.grinding.opt1 %></td>
+                                <th scope="col">Operator 2</th>
+                                <td><%= ingot.grinding.opt2 %></td>
+                            </tr>
+                            <div class="d-flex">
+                                <h5 class="flex-grow-1 align-self-center mb-0">Info</h5>
+                                <% if(currentUser && currentUser.isAdmin){ %>
+                                    <a href="/ingots/<%=ingot._id%>/grinding/operator/edit" style="margin-right: 10px;" class="btn btn-warning btn-sm">Edit Operator</a>
+                                    <a href="/ingots/<%=ingot._id%>/grinding/info/edit" class="btn btn-warning btn-sm">Edit Date & Mc</a>
+                                <% } %>
+                            </div>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="content table-responsive table-full-width">
+                    <table class="table table-borderless">
+                        <tbody>
+                            <tr>
+                                <th scope="col">Gr Pcs</th>
+                                <td><%= ingot.grinding.grpcs %></td>
+                            </tr>
+                            <tr>
+                                <th scope="col">Chip</th>
+                                <td><%= ingot.grinding.grcf %></td>
+                                <th scope="col">Break</th>
+                                <td><%= ingot.grinding.grbrk %></td>
+                                <th scope="col">Crack</th>
+                                <td><%= ingot.grinding.grcrk %></td>
+                            </tr>
+                            <tr>
+                                <th scope="col">Out</th>
+                                <td><%= ingot.grinding.grout %></td>
+                                <th scope="col">Sergeant OF</th>
+                                <td><%= ingot.grinding.grdam %></td>
+                                <th scope="col">Other</th>
+                                <td><%= ingot.grinding.groth %></td>
+                            </tr>
+                            <div class="d-flex">
+                                <h5 class="flex-grow-1 align-self-center mb-0">Rejects</h5>
+                                <% if(currentUser && currentUser.isAdmin){ %>
+                                    <a href="/ingots/<%=ingot._id%>/grinding/reject/edit" class="btn btn-warning btn-sm">Edit Rejects</a>
+                                <% } %>
+                            </div>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<% include ../../partials/footer %>

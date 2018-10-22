@@ -1,0 +1,48 @@
+<% include ../../partials/header %>
+
+    <h4>Edit Rejects for <%=ingot.order%>-<%=ingot.lot%></h4>
+
+    <form action="/ingots/<%=ingot._id%>/grinding/reject/?_method=PUT" method="POST" autocomplete="off">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="grpcs">Gr Pieces</label>
+                <input id="grpcs" type="text" name="grpcs" value="<%=ingot.grinding.grpcs%>" class="form-control">
+            </div>
+        </div>
+       
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label for="grcf">Chip</label>
+                <input id="grcf" type="number" name="grcf" value="<%=ingot.grinding.grcf%>" min="0" max="999" class="form-control">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="grbrk">Break</label>
+                <input id="grbrk" type="number" name="grbrk" value="<%=ingot.grinding.grbrk%>" min="0" max="999" class="form-control">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="grcrk">Crack</label>
+                <input id="grcrk" type="number" name="grcrk" value="<%=ingot.grinding.grcrk%>" min="0" max="999"class="form-control">
+            </div>
+        </div>
+        
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label for="grout">Out</label>
+                <input id="grout" type="number" name="grout" value="<%=ingot.grinding.grout%>" min="0" max="999" class="form-control">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="grdam">Sergeant OF</label>
+                <input id="grdam" type="number" name="grdam" value="<%=ingot.grinding.grdam%>" min="0" max="999" class="form-control">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="groth">Other</label>
+                <input id="groth" type="number" name="groth" value="<%=ingot.grinding.groth%>" min="0" max="999"class="form-control">
+            </div>
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+    <a href="/ingots/<%=ingot._id%>">Back</a>
+
+<% include ../../partials/footer %>

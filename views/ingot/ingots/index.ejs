@@ -1,0 +1,128 @@
+<% include ../../partials/header %>
+
+<div class="row">
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-header"><h5>Total Ingots in Database: <%= count %></h5></div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-body mt-2">
+        <form action="/ingots" method="GET" autocomplete="off">
+          <div class="form-row">
+            <div class="col">
+                <input class="form-control" type="text" name="search" placeholder="Search Ingot Lot e.g.: 12345" aria-label="Search">
+            </div>
+            <div class="col">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </div>
+          </div>
+        </form>
+
+        <div class="my-2">
+            <% if(noMatch != null) { %>
+                <h5 style="font-size: 12px; color: red"><%= noMatch%></h5>
+            <% } %>
+        </div>
+        
+        <div class="content table-responsive table-full-width">
+          <table class="table table-striped table-hover">
+            <thead>
+              <tr>
+                <th>Gr Date</th>
+                <th>Order - Lot</th>
+                <th>Groove</th>
+                <th>Wheel Life</th>
+                <th>Machine</th>
+                <th>DWG</th>
+                <th></th>
+              </tr>
+            </thead>
+            
+            <tbody>
+              <% if (data.length >0){ %>
+                <% data.forEach(function(val){ %>
+                  <tr>
+                    <td>
+                      <% if(val.grinding.grDate === 'Invalid date'){ %>
+                        <%= %>
+                      <% } else { %>
+                        <%= moment(val.grinding.grDate, 'YYYY-MM-DD').format('DD MMM YYYY') %>
+                      <% } %>
+                    </td>
+                    <td>
+                      <a href="ingots/<%=val._id%>">
+                        <%= val.order %> - <%= val.lot %>
+                      </a>
+                    </td>
+                    <td><%= val.grinding.groove %></td>
+                    <td><%= val.grinding.whlLife %></td>
+                    <td><%= val.grinding.machine %></td>
+                    <td><%= val.grinding.drawingNo %></td>
+                  </tr>
+                <% }) %>
+              <% } %>  
+            </tbody>
+          </table>
+        </div>
+    
+      </div><!-- card-body -->
+    </div><!-- card -->
+  </div> <!-- col-md-12 -->
+</div><!-- row -->
+
+<nav aria-label="Page navigation example">
+  <% if (pages && pages > 0) { %>
+  <ul class="pagination justify-content-center">
+    
+      <% if (current == 1) { %>
+          <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1">First</a></li>
+          <% } else { %>
+          <li class="page-item"><a class="page-link" href="/ingots<%if(search){%>?search=<%=search%><%}%>">First</a></li>
+      <% } %>
+      
+      <% if (current == 1) { %>
+          <li class="page-item disabled"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span><span class="sr-only">Previous</span></a></li>
+      <% } else { %>
+          <li class="page-item"><a class="page-link" href="/ingots?page=<%= Number(current) - 1 %><%if(search){%>&search=<%=search%><%}%>">&laquo;</a></li>
+      <% } %>
+      
+      <% var i = (Number(current) > 5 ? Number(current) - 4 : 1) %>
+      
+      <% if (i !== 1) { %>
+          <li class="page-item disabled"><a class="page-link">...</a></li>
+      <% } %>
+
+      <% for (; i <= (Number(current) + 4) && i <= pages; i++) { %>
+          <% if (i == current) { %>
+              <li class="page-item active"><a class="page-link"><%= i %></a></li>
+          <% } else { %>
+              <li class="page-item"><a class="page-link" href="/ingots?page=<%= i %><%if(search){%>&search=<%=search%><%}%>"><%= i %></a></li>
+          <% } %>
+          
+          <% if (i == Number(current) + 4 && i < pages) { %>
+              <li class="page-item disabled"><a class="page-link">...</a></li>
+          <% } %>
+      <% } %>
+      
+      <% if (current == pages) { %>
+          <li class="page-item disabled"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span><span class="sr-only">Next</span></a></li>
+      <% } else { %>
+          <li class="page-item"><a class="page-link" href="/ingots?page=<%= Number(current) + 1 %><%if(search){%>&search=<%=search%><%}%>">&raquo;</a></li>
+      <% } %>
+      
+      <% if (current == pages) { %>
+          <li class="page-item disabled"><a class="page-link" href="#">Last</a></li>
+      <% } else { %>
+          <li class="page-item"><a class="page-link" href="/ingots?page=<%= pages %><%if(search){%>&search=<%=search%><%}%>">Last</a></li>
+      <% } %>
+  
+  </ul>
+  <% } %>
+</nav>
+  
+<% include ../../partials/footer %>

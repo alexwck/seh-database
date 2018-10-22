@@ -1,0 +1,22 @@
+<% include ../../partials/header %>
+
+    <h4>Edit Operator for <%=ingot.order%>-<%=ingot.lot%></h4>
+
+    <form action="/ingots/<%=ingot._id%>/grinding/operator/?_method=PUT" method="POST" autocomplete="off">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="opt1">Operator 1</label>
+                <input id="opt1" type="text" name="opt1" value="<%=ingot.grinding.opt1%>" class="form-control" required>
+            </div>
+             <div class="form-group col-md-6">
+                <label for="opt2">Operator 2</label>
+                <input id="opt2" type="text" name="opt2" value="<%=ingot.grinding.opt2%>" class="form-control" required>
+            </div>
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+    <a href="/ingots/<%=ingot._id%>">Back</a>
+
+<% include ../../partials/footer %>

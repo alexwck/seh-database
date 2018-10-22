@@ -1,0 +1,21 @@
+<% include ../partials/header %>
+
+    <h4>Add Serial Number and Batch for <%=ingot.order%>-<%=ingot.lot%></h4>
+
+    <form action="/wheels/<%=ingot._id%>" method="POST" autocomplete="off">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="serialNo">Serial Number</label>
+                <input id="serialNo" type="text" name="serialNo" class="form-control">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="batchNo">Batch Number</label>
+                <input id="batchNo" type="text" name="batchNo" class="form-control">
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+    <a href="/ingots/<%=ingot._id%>">Back</a>
+
+<% include ../partials/footer %>

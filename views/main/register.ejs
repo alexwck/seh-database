@@ -1,0 +1,34 @@
+<% include ../partials/header %>
+
+<div class="index-box">
+    <div class="ib-header">
+      <h1>Sign Up</h1>
+    </div>
+    <form class="form-signin" action="/auth/register" method="POST" autocomplete="off">
+      <div class="form-label-group">
+        <input type="email" id="inputEmail" class="form-control" name="email" placeholder="Email Address" required autofocus>
+        <label for="inputEmail">Email Address</label>
+      </div>
+      <div class="form-label-group">
+        <input type="text" id="inputUsername" class="form-control" name="username" placeholder="Username" required>
+        <label for="inputUsername">Username</label>
+      </div>
+      <div class="form-label-group">
+        <input type="password" id="inputPassword" class="form-control" name="password" placeholder="Password" required>
+        <label for="inputPassword">Password</label>
+      </div>
+      <div class="form-label-group">
+        <input type="password" id="confirmPassword" class="form-control" name="confirm" placeholder="Confirm Password" required>
+        <label for="confirmPassword">Confirm Password</label>
+      </div>
+      <div class="form-label-group">
+        <input type="text" id="adminCode" class="form-control" name="adminCode" placeholder="Admin Code">
+        <label for="adminCode">Admin Code</label>
+      </div>
+      <div class="form-group button">
+        <button class="btn btn-lg btn-primary btn-block">Sign Up</button>
+      </div>
+    </form>
+</div>
+
+<% include ../partials/footer %>
