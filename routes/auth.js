@@ -77,6 +77,7 @@ router.post('/forgot', function (req, res, next) {
       crypto.randomBytes(20, function (err, buf) {
         var token = buf.toString('hex');
         done(err, token);
+        // When it is done, the token generated will be sent as part of the URL to the user email
       });
     },
     function (token, done) {
@@ -178,11 +179,14 @@ router.post('/reset/:token', function (req, res) {
 });
 
 function checkAdmin(req, res, next) {
+  // Check to see if database contain admin as user or not
   db.User.findOne({ username: 'admin' })
     .then((user) => {
+      // If there are  none, go proceed to the register route
       if (user === null) {
         return next();
       } else {
+        // There is a user and the user is an admin
         if (req.isAuthenticated() && req.user.isAdmin) {
           return next();
         } else {

@@ -7,11 +7,12 @@
     
     <title>Dashboard</title>
     
+    <!--<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">-->
+    <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">-->
     <link rel="stylesheet" href="/bootstrap-4.1.3-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="/fontAwesome/css/all.min.css">
 
-    <script src="/Chart.min.js" type="application/javascript"></script>
-
+     <!--User defined stylesheet-->
      <link rel="stylesheet" href="/stylesheets/index.css">
 </head>
 
@@ -57,112 +58,65 @@
     </header> <!-- header -->
 
     <main>
-        <div class="container-fluid">
-            <canvas id="myChart" width="400" height="100"></canvas>
+        <div class="container">
 
-            <div class="container">
-                Start Date: <input id="startDate" width="276" />
-                End Date: <input id="endDate" width="276" />
-            </div>
+            <div id="loadingMessage"></div>        
+            <canvas id="myChart"></canvas>
+                
+            <form>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="startDate" class="col-form-label col-form-label-sm">Start Date</label>
+                        <input type="text" class="form-control" id="startDate" placeholder="dd/mm/yyyy">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="endDate" class="col-form-label col-form-label-sm">End Date</label>
+                        <input type="text" class="form-control" id="endDate" placeholder="dd/mm/yyyy">
+                    </div>
+                </div>
+            </form>
+
+            <button type="submit" class="btn btn-dark btn-sm float-right" id="renderBtn">Render</button>
         </div>
     </main>
 
     <footer>
-            <div class="container-fluid">
+            <div class="container">
                 <p class="copyright float-right">&copy; Alex Wee</p>
             </div>
     </footer>
   
 </body>
 
+    <!--   Core JS Files   -->
+	<!--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>-->
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>-->
+    <!--<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>-->
+    <script src="/Chart.js"></script>
     <script src="/jQuery/jquery-3.3.1.min.js"></script>
     <script src="/bootstrap-4.1.3-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/dashboard/myChart.js"></script>
     
+    <!--User defined JS-->
     <script src="/gijgo-datepicker/js/gijgo.min.js" type="text/javascript"></script>
     <link href="/gijgo-datepicker/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+
     <script>
-       var today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
+       let today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
         $('#startDate').datepicker({
             uiLibrary: 'bootstrap4',
             iconsLibrary: 'fontawesome',
-            minDate: today,
-            maxDate: function () {
-                return $('#endDate').val();
-            }
+            format: 'dd-mm-yyyy',
+            size: 'small',
+            maxDate: today
         });
         $('#endDate').datepicker({
             uiLibrary: 'bootstrap4',
             iconsLibrary: 'fontawesome',
-            minDate: function () {
-                return $('#startDate').val();
-            }
+            format: 'dd-mm-yyyy',
+            size: 'small',
+            maxDate: today
         });
     </script>
 
-    <script>
-        let ctx = document.getElementById("myChart").getContext('2d');
-        
-        Chart.defaults.line.spanGaps = true;
-
-        Chart.defaults.global.elements.point.backgroundColor = 'red';
-        Chart.defaults.global.elements.point.borderWidth = 3;
-        Chart.defaults.global.elements.point.borderColor = 'red';
-
-        Chart.defaults.global.elements.line.backgroundColor = 'rgba(0, 0, 0, 0)';
-        Chart.defaults.global.elements.line.borderWidth = 1;
-        Chart.defaults.global.elements.line.borderColor = '#000';
-
-        let myChart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                datasets: 
-                [
-                    {
-                        pointHoverBackgroundColor: 'blue',
-                        pointHoverBorderColor: 'blue',
-                        pointHoverBorderWidth: 3,
-
-                        data: [20, 50, 100, 75, 25, 0],
-                        label: 'Left dataset',
-                        yAxisID: 'left-y-axis'
-                    },
-                    {
-                        data: [0.1, 0.5, 1.0, 2.0, 1.5, 0],
-                        label: 'Right dataset',
-                        yAxisID: 'right-y-axis'
-                    }
-                ],
-                labels: ['Red', 'Orange']
-            },
-            options: {
-                scales: {
-                    yAxes: [{
-                        id: 'left-y-axis',
-                        type: 'linear',
-                        position: 'left'
-                    }, {
-                        id: 'right-y-axis',
-                        type: 'linear',
-                        position: 'right'
-                    }]
-                },
-                layout: {
-                    padding: {
-                        left: 50,
-                        right: 0,
-                        top: 0,
-                        bottom: 0
-                    }
-                },
-                legend:{
-                    position: 'right',
-                },
-                title:{
-                    display: true,
-                    fontSize: 18,
-                    text: "EMTEC"
-                },
-            }
-        });
-        </script>
 </html>

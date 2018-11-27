@@ -139,6 +139,10 @@ footer .copyright {
     display: none;
 }
 
+.editMachineForm{
+    display: none;
+}
+
 .fa-info-circle:before{
     color: #04a0b2;
     cursor: pointer;
@@ -240,7 +244,7 @@ letter-spacing: 0.1px;
 
 .listGroup {
     display:flex;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
 }
 
 .listGroup button{
@@ -252,6 +256,60 @@ letter-spacing: 0.1px;
     opacity: 1;
 }
 
+.notice.info p{
+    margin-bottom: 0px;
+    color: #34495e;
+}
+
+.notice {
+    position: relative;
+    margin: 0 auto;
+    padding: 1em 1em 1em 2em;
+    border-left: 4px solid #DDD;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.125);
+    width: 50%;
+  }
+  
+.notice:before {
+    position: absolute;
+    top: 50%;
+    margin-top: -17px;
+    left: -17px;
+    background-color: #DDD;
+    color: #FFF;
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    text-align: center;
+    line-height: 30px;
+    font-weight: bold;
+    font-family: Georgia;
+    text-shadow: 1px 1px rgba(0, 0, 0, 0.5);
+}
+
+.info {
+    border-color: #0074D9;
+}
+
+.info:before {
+    content: "i";
+    background-color: #0074D9;
+}
+
+/* VIEWS/DASHBOARD.ejs  */
+#myChart{
+    width: 100%;
+    height: 25rem;
+    position: relative;
+}
+
+#loadingMessage{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+ 
 @keyframes blinkingText{
     0%{     color: #000;    }
     50%{    color: red; }

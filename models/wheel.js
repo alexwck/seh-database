@@ -9,6 +9,10 @@ let wheelSchema = new mongoose.Schema({
         type: String,
         default: 0
     },
+    machine:{
+        type: String,
+        uppercase: true,
+    },
     ingots: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Ingot' }],
     isCompleted:{
         type: Boolean,

@@ -7,8 +7,13 @@ $(document).ready(function(){
             $(this).val(order + `-` + lot );
         }
         if(event.which == 13) {
-            let inputval = $(this).val();
-            createIngot(inputval);
+            // Do regex test before passing into the function
+            let rgx = new RegExp('^[a-zA-Z]{3}([a-zA-Z]| ){1}\\d{3}[-]{1}[a-zA-Z\\d]{5}$',"g");
+            if (rgx.test(inputval) === false){
+                alert("Sila ikut format yang terpapar atas halaman")
+            } else{
+                createIngot(inputval);
+            }
         }
     })
 
@@ -29,6 +34,7 @@ $(document).ready(function(){
                 }
             })
         } else{
+            // Cancel the active state after cancelling the delete request
             $(this).blur();
         }
     })
@@ -59,10 +65,13 @@ function createIngot(inputval){
             $('#ingot').val('');
             display(data);
         },
-        error: function(jqXHR, textStatus, errorThrown) {
-            console.log("XHR" + jqXHR)
-            console.log("Status" + textStatus)
-            console.log(errorThrown)
+        error: function (xhr) {
+            if (xhr.status === 404) {
+                alert(xhr.responseJSON.error);
+            }
+            if (xhr.status === 500) {
+                alert(xhr.responseJSON.error);
+            }
         }
     });
 }

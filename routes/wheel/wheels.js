@@ -2,6 +2,8 @@ const   express = require("express"),
         router  = express.Router();
 
 const ctrlWheels = require("../../controllers/wheel/wheels");
+// Get wheels to show the full list
+// Show connected ingots to show more information about it
 
 router.route("/")
     .get(ctrlWheels.getWheels)

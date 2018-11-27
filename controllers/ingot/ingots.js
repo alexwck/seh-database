@@ -36,6 +36,7 @@ exports.getIngots = (req, res) => {
                               if(data.length < 1){
                                     noMatch = "No ingot lot match that query, please try again.";
                               }
+                              // Render show template
                               res.render("ingot/ingots/index", { 
                                     data: data, 
                                     tab: "ingots",
@@ -63,6 +64,7 @@ exports.getIngots = (req, res) => {
                               console.log(err);
                         }
                         else{
+                              // Render show template
                               res.render("ingot/ingots/index", { 
                                     data: data, 
                                     tab: "ingots",

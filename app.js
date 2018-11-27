@@ -14,18 +14,23 @@ const   express         = require("express"),
 
 const   server          = http.createServer(app);
 
+// AUTHENTICATION routes
 const authRoutes = require("./routes/auth");
 
+// INGOT routes
 const   ingotRoutes = require("./routes/ingot/ingots"),
         infoRoutes  = require("./routes/ingot/infos"),
         operatorRoutes = require("./routes/ingot/operators"),
         rejectRoutes = require("./routes/ingot/rejects"),
         wheelRoutes = require("./routes/ingot/wheels");
 
+// WHEEL routes
 const serialBatchRoutes = require("./routes/wheel/wheels");
 
+// DASHBOARD routes
 const dashboardRoutes = require("./routes/dashboard");
-       
+
+// MIDDLEWARE        
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(expressSanitizer());
 app.set("view engine", "ejs");
@@ -35,6 +40,7 @@ app.use(express.static(__dirname + "/node_modules/chart.js/dist"));
 app.use(methodOverride("_method"));
 app.use(flash());
 
+// PASSPORT CONFIGURATION
 app.use(require("express-session")({
     secret:"alexwck",
     resave: false,
@@ -46,6 +52,7 @@ passport.use(new LocalStrategy(db.User.authenticate()));
 passport.serializeUser(db.User.serializeUser());
 passport.deserializeUser(db.User.deserializeUser());
 
+// Whatever we put in res.locals will be availalbe in our template
 app.use(function(req,res, next){
    res.locals.currentUser = req.user;
    res.locals.error = req.flash("error");
@@ -53,11 +60,16 @@ app.use(function(req,res, next){
    next();
 });
 
+// *************************************************************
+// CHILD PROCESS
 let child = cp.fork("child.js");
 child.on("exit", ()=>{
     console.log("Child terminated!")
 })
 
+// ************************************************************
+
+// ROOT - LANDING PAGE
 app.get("/",function(req, res){
     res.render("main/landing");
 });
@@ -73,16 +85,20 @@ app.use("/wheels",serialBatchRoutes);
 
 app.use("/dashboard",dashboardRoutes);
 
+// Send Error Res Status Code if access other routes than mentioned above
 app.use(function(req,res){
     res.status(404).sendFile(__dirname + "/public/404/index.html");
 })
 
+// BAD WAY OF HANDLING
+// Catch any error (mostly because AJAX there)
 process.on('uncaughtException', function (err) {
     console.error(err);
     console.log("Node NOT Exiting...");
 });
 
-server.listen(3000, 'localhost');
+// process.env.prodPort process.env.prodIP
+server.listen(process.env.prodPort, process.env.prodIP);
 server.on('listening', function() {
     console.log('Express server started on port %s at %s', server.address().port, server.address().address);
 });

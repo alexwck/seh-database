@@ -1,14 +1,17 @@
 const mongoose = require("mongoose");
-
+//INGOTS - ORDER, LOT, GRINDING
+// Groove and Wheel Life default 0
 let ingotSchema = new mongoose.Schema({
     order: {
         type: String,
+        // For validation if want to manually enter, data from CSV is correct
         uppercase: true,
         required: "Order cannot be left blank.",
         match: [/^[a-z]{3}([a-z]| )\d{3}$/i, "Please fill in valid format for order"]
     },
     lot: {
         type: String,
+        // For validation if want to manually enter, data from CSV is correct
         uppercase: true,
         required: "Lot cannot be left blank.",
         match: [/^[a-z\d]{5}$/i, "Please fill in valid format for lot"]
@@ -19,6 +22,7 @@ let ingotSchema = new mongoose.Schema({
         },
         machine: {
             type: String,
+            // For validation if want to manually enter, data from CSV is correct
             uppercase: true,
         },
         drawingNo:{
